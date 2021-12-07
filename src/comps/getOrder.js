@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import { Table } from 'react-bootstrap'
+import { Table, Spinner, Button } from 'react-bootstrap'
 import axios from 'axios'
 
 //getting data for table 1
@@ -16,15 +16,26 @@ const TableData1 = () => {
             setData(response.data);
         }
     }
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
+    }
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                /></Button>
+        )
     }
     return (
         <>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -32,21 +43,21 @@ const TableData1 = () => {
                 </thead>
                 <tbody>
                     {data.data && data.data.map((items, index) => {
-                        return(
+                        return (
                             <tr key={index}>
-                                <td>{index+1}</td>
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
                             </tr>
                         );
-                        
+
                     })}
                 </tbody>
             </Table>
         </>
     )
 }
+
 
 // getting data for tale 2
 const TableData2 = () => {
@@ -62,15 +73,26 @@ const TableData2 = () => {
             setData(response.data);
         }
     }
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
+    }
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                /></Button>
+        )
     }
     return (
         <>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -78,21 +100,21 @@ const TableData2 = () => {
                 </thead>
                 <tbody>
                     {data.data && data.data.map((items, index) => {
-                        return(
+                        return (
                             <tr key={index}>
-                                <td>{index+1}</td>
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
                             </tr>
                         );
-                        
+
                     })}
                 </tbody>
             </Table>
         </>
     )
 }
+
 
 // getting data for tale 3
 const TableData3 = () => {
@@ -108,15 +130,26 @@ const TableData3 = () => {
             setData(response.data);
         }
     }
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
+    }
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                /></Button>
+        )
     }
     return (
         <>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -124,15 +157,14 @@ const TableData3 = () => {
                 </thead>
                 <tbody>
                     {data.data && data.data.map((items, index) => {
-                        return(
+                        return (
                             <tr key={index}>
-                                <td>{index+1}</td>
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
                             </tr>
                         );
-                        
+
                     })}
                 </tbody>
             </Table>
@@ -154,15 +186,26 @@ const TableData4 = () => {
             setData(response.data);
         }
     }
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
+    }
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                /></Button>
+        )
     }
     return (
         <>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -170,15 +213,14 @@ const TableData4 = () => {
                 </thead>
                 <tbody>
                     {data.data && data.data.map((items, index) => {
-                        return(
+                        return (
                             <tr key={index}>
-                                <td>{index+1}</td>
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
                             </tr>
                         );
-                        
+
                     })}
                 </tbody>
             </Table>
@@ -200,15 +242,26 @@ const TableData5 = () => {
             setData(response.data);
         }
     }
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
+    }
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                /></Button>
+        )
     }
     return (
         <>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -216,15 +269,14 @@ const TableData5 = () => {
                 </thead>
                 <tbody>
                     {data.data && data.data.map((items, index) => {
-                        return(
+                        return (
                             <tr key={index}>
-                                <td>{index+1}</td>
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
                             </tr>
                         );
-                        
+
                     })}
                 </tbody>
             </Table>
@@ -246,15 +298,27 @@ const TableData6 = () => {
             setData(response.data);
         }
     }
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
+    }
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                />
+            </Button>
+        )
     }
     return (
         <>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
@@ -262,15 +326,14 @@ const TableData6 = () => {
                 </thead>
                 <tbody>
                     {data.data && data.data.map((items, index) => {
-                        return(
+                        return (
                             <tr key={index}>
-                                <td>{index+1}</td>
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
                             </tr>
                         );
-                        
+
                     })}
                 </tbody>
             </Table>
@@ -278,9 +341,9 @@ const TableData6 = () => {
     )
 }
 
-export {TableData1}
-export {TableData2}
-export {TableData3}
-export {TableData4}
-export {TableData5}
-export {TableData6}
+export { TableData1 }
+export { TableData2 }
+export { TableData3 }
+export { TableData4 }
+export { TableData5 }
+export { TableData6 }

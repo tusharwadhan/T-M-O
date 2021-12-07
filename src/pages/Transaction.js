@@ -1,9 +1,10 @@
-import React from 'react'
+import {React} from 'react'
+import GetTransactions from "../comps/GetTransaction";
 
 function Transaction() {
     return (
-        <div>
-            <h1>Transaction Page</h1>
+        <div style={{marginRight:'20px',margin:'20px'}}>
+            <GetTransactions />
         </div>
     )
 }

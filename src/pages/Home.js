@@ -8,7 +8,7 @@ function click(){
     console.log("hello there");
 }
 
-function Home() {
+function Home(props) {
 
     return (
         <>

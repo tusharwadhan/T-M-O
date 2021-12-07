@@ -1,10 +1,10 @@
 import { React, useEffect } from 'react';
 import { useState } from 'react';
-import { Table } from 'react-bootstrap'
+import { Table, Spinner , Button } from 'react-bootstrap'
 import axios from 'axios'
 
 function GetInventory() {
-    const [data,setData] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         getCategory();
@@ -17,50 +17,69 @@ function GetInventory() {
         }
     }
 
-    if(data.status === false){
-        return(data.message);
+    if (data.status === false) {
+        return (data.message);
     }
-    const isveg = (val)=>{
-        if(val === true)return ("Veg");
+    const isveg = (val) => {
+        if (val === true) return ("Veg");
         else return ("Non_Veg");
     }
-
+    if (data.data === undefined) {
+        return (
+            <Button variant="primary" disabled>
+                <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                />
+                Loading...
+            </Button>
+        )
+    }
     return (
         <>
-        {data.data && data.data.map((item,index)=>{
-            const type = (val,i)=>{
-                if(val === undefined)return ("--");
-                return item.quantity_price[i].type;
-            }
-            const price = (val,i)=>{
-                if(val === undefined)return ("--");
-                return item.quantity_price[i].price;
-            }
+            {data.data && data.data.map((item, index) => {
+                const type = (val, i) => {
+                    if (val === undefined) return ("--");
+                    return item.quantity_price[i].type;
+                }
+                const price = (val, i) => {
+                    if (val === undefined) return ("--");
+                    return item.quantity_price[i].price;
+                }
 
-            return(<Table responsive="sm" key='index'>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Veg/NonVeg</th>
-                    <th>{type(item.quantity_price[0],0)}</th>
-                    <th>{type(item.quantity_price[1],1)}</th>
-                    <th>{type(item.quantity_price[2],2)}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{index+1}</td>
-                    <td>{item.name}</td>
-                    <td>{isveg(item.isVeg)}</td>
-                    <td>{price(item.quantity_price[0],0)}</td>
-                    <td>{price(item.quantity_price[1],1)}</td>
-                    <td>{price(item.quantity_price[2],2)}</td>
-                </tr>
-            </tbody>
-        </Table>)
-            
-        })}
+                // return(<h1>hello</h1>
+                //     data.data.map((items,indexs)=>{
+                //         return()
+                //     })
+                // )
+
+                return (<Table responsive="sm" key='index'>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Veg/NonVeg</th>
+                            <th>{type(item.quantity_price[0], 0)}</th>
+                            <th>{type(item.quantity_price[1], 1)}</th>
+                            <th>{type(item.quantity_price[2], 2)}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{index + 1}</td>
+                            <td>{item.name}</td>
+                            <td>{isveg(item.isVeg)}</td>
+                            <td>{price(item.quantity_price[0], 0)}</td>
+                            <td>{price(item.quantity_price[1], 1)}</td>
+                            <td>{price(item.quantity_price[2], 2)}</td>
+                        </tr>
+                    </tbody>
+                </Table>)
+
+            })}
         </>
     )
 }
