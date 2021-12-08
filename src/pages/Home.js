@@ -1,14 +1,18 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {TableData1,TableData2,TableData3,TableData4,TableData5,TableData6} from "../comps/getOrder"
+import { TableData1, TableData2, TableData3, TableData4, TableData5, TableData6 } from "../comps/getOrder"
+import Popup from './Popup';
+import AddOrder from '../comps/AddOrder';
 
-function click(){
-    console.log("hello there");
-}
+function Home() {
 
-function Home(props) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
 
     return (
         <>
@@ -17,7 +21,7 @@ function Home(props) {
                 <Card>
                     <Card.Header as="h5" className='text'>
                         Table 01
-                        <Button variant="primary" className='btn-right' onClick={()=>click()}>Add</Button>
+                        <Button variant="outline-primary" className='btn-right' onClick={togglePopup}>Add</Button>
                     </Card.Header>
                     <Card.Body className='card-text'>
                         <Card.Text>
@@ -25,15 +29,15 @@ function Home(props) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="primary" className='btn-left green'>Receipt</Button>
-                        <Button variant="primary" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
 
                 <Card>
                     <Card.Header as="h5" className='text'>
                         Table 02
-                        <Button variant="primary" className='btn-right'>Add</Button>
+                        <Button variant="outline-primary" className='btn-right' onClick={togglePopup}>Add</Button>
                     </Card.Header>
                     <Card.Body className='card-text'>
                         <Card.Text>
@@ -41,15 +45,15 @@ function Home(props) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="primary" className='btn-left green'>Receipt</Button>
-                        <Button variant="primary" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
 
                 <Card>
                     <Card.Header as="h5" className='text'>
                         Table 03
-                        <Button variant="primary" className='btn-right'>Add</Button>
+                        <Button variant="outline-primary" className='btn-right' onClick={togglePopup}>Add</Button>
                     </Card.Header>
                     <Card.Body className='card-text'>
                         <Card.Text>
@@ -57,17 +61,17 @@ function Home(props) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="primary" className='btn-left green'>Receipt</Button>
-                        <Button variant="primary" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
 
-                <br/>
+                <br />
 
                 <Card>
                     <Card.Header as="h5" className='text'>
                         Table 04
-                        <Button variant="primary" className='btn-right'>Add</Button>
+                        <Button variant="outline-primary" className='btn-right' onClick={togglePopup}>Add</Button>
                     </Card.Header>
                     <Card.Body className='card-text'>
                         <Card.Text>
@@ -75,15 +79,15 @@ function Home(props) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="primary" className='btn-left green'>Receipt</Button>
-                        <Button variant="primary" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
 
                 <Card>
                     <Card.Header as="h5" className='text'>
                         Table 05
-                        <Button variant="primary" className='btn-right'>Add</Button>
+                        <Button variant="outline-primary" className='btn-right' onClick={togglePopup}>Add</Button>
                     </Card.Header>
                     <Card.Body className='card-text'>
                         <Card.Text>
@@ -91,15 +95,15 @@ function Home(props) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="primary" className='btn-left green'>Receipt</Button>
-                        <Button variant="primary" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
 
                 <Card>
                     <Card.Header as="h5" className='text'>
                         Table 06
-                        <Button variant="primary" className='btn-right'>Add</Button>
+                        <Button variant="outline-primary" className='btn-right' onClick={togglePopup}>Add</Button>
                     </Card.Header>
                     <Card.Body className='card-text'>
                         <Card.Text>
@@ -107,10 +111,19 @@ function Home(props) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="primary" className='btn-left green'>Receipt</Button>
-                        <Button variant="primary" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
+            </div>
+
+            <div>
+                {isOpen && <Popup
+                    content={<>
+                        <AddOrder/>
+                    </>}
+                    handleClose={togglePopup}
+                />}
             </div>
         </>
     )

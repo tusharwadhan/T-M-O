@@ -1,0 +1,16 @@
+.container2{
+    border: groove;
+    width: 370px;
+    height: 550px;
+    margin-top: 20px;
+}
+.leftText{
+    margin-left: -250px;
+}
+.mb-33{
+    margin-left: 21px;
+}
+.login{
+    margin-top: -30px;
+    margin-left: 103px;
+}

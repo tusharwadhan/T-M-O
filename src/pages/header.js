@@ -23,7 +23,7 @@ const Header = () => {
                                 <NavDropdown.Item><Link to="/about" className='link'>About</Link></NavDropdown.Item>
                                 <NavDropdown.Item><Link to="/help" className='link'>Help</Link></NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+                                <NavDropdown.Item><Link to="/" className='link'>Logout</Link></NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
