@@ -7,6 +7,7 @@ import Inventory from "./pages/Inventory";
 import Transaction from "./pages/Transaction";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
+import Register from './pages/Register';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<Login login={false}/>} />
+          <Route exact path="/register" element={<Register/>} />
           <Route exact path="/home" element={<Home/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/transaction" element={<Transaction/>} />

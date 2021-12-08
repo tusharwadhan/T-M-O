@@ -2,16 +2,20 @@ import { React } from 'react'
 import { Button, Container, Alert, Spinner } from "react-bootstrap";
 import './login.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 function Login(props) {
+
+    const hideAlert = () =>{
+        document.getElementById('alert').hidden = true;
+    }
     const CallApi = () => {
         document.getElementById('load').hidden = false
 
         const obj = {"email":document.getElementById('email').value , "password":document.getElementById('password').value}
 
         const login = async () => {
-            console.log(obj);
-            const response = await axios.post("https://t-m-o.herokuapp.com/login" , obj);
+            const response = await axios.post("http://t-m-o.herokuapp.com/login",obj);
             if (response.status === 200) {
                 next(response.data);
             }
@@ -49,18 +53,19 @@ function Login(props) {
                     <row className='row'>
 
                         <h6 className='left'>Email address</h6>
-                        <input type="email" placeholder="Enter email" className='leftInput' id="email" />
+                        <input type="email" placeholder="Enter email" className='leftInput' id="email" onChange={()=>hideAlert()} />
                         <br />
                         <p className="text-muted" style={{ textAlign: 'left', marginLeft: '-12px' }}>
                             We'll never share your email with anyone else.
                         </p>
                         <h6 className='left'>Password</h6>
-                        <input type="email" placeholder="Enter Password" className='leftInput' id="password" />
+                        <input type="password" placeholder="Enter Password" className='leftInput' id="password" onChange={()=>hideAlert()} />
                     </row>
                     <row>
-                        <Button variant="primary" type="submit" onClick={() => CallApi()}>
+                        <Button variant="primary" type="submit" className='btn' onClick={() => CallApi()}>
                             Submit
-                        </Button>
+                        </Button><br/><br />
+                        <p className='register'>New Users can <Link to='/register'>register here</Link></p>
                     </row>
                 </Container>
             </div>
