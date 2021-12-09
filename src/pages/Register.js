@@ -77,16 +77,21 @@ class Register extends React.Component {
                         </Row>
 
                         <Form.Group className="mb-33" controlId="phNo">
-                            <Form.Label className='leftText'>Phone No</Form.Label>
+                            <Form.Label style={{ marginLeft: '-220px'}}>Phone No</Form.Label>
                             <Form.Control placeholder="ph no" onChange={()=>hideAlert()}/>
                         </Form.Group>
-                        <br />
-                        <Form.Group className="mb-33" controlId="resName">
-                            <Form.Label style={{ marginLeft: '-198px'}}>Restaurant Name</Form.Label>
-                            <Form.Control placeholder="Name Of Restaurant" onChange={()=>hideAlert()}/>
+
+                        <Form.Group className="mb-33" controlId="password">
+                            <Form.Label style={{ marginLeft: '-220px',marginTop:'15px'}}>Password</Form.Label>
+                            <Form.Control type="password" placeholder="password" onChange={()=>hideAlert()}/>
                         </Form.Group>
 
                         <Row className="mb-3">
+                            <Form.Group as={Col} controlId="resName">
+                                <Form.Label style={{ marginLeft: '-15px' }}>Restaurant Name</Form.Label>
+                                <Form.Control  placeholder="Name" onChange={()=>hideAlert()}/>
+                            </Form.Group>
+
                             <Form.Group as={Col} controlId="tables">
                                 <Form.Label style={{ marginLeft: '-90px' }} >Tables</Form.Label>
                                 <Form.Select defaultValue="Choose...">
@@ -98,11 +103,6 @@ class Register extends React.Component {
                                     <option>5</option>
                                     <option>6</option>
                                 </Form.Select>
-                            </Form.Group>
-
-                            <Form.Group as={Col} controlId="password">
-                                <Form.Label style={{ marginLeft: '-65px' }}>Password</Form.Label>
-                                <Form.Control type="password" placeholder="pass" onChange={()=>hideAlert()}/>
                             </Form.Group>
                         </Row>
                         <Button style={{marginLeft:'-225px'}}
