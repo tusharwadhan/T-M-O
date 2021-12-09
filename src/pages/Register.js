@@ -32,7 +32,7 @@ class Register extends React.Component {
             }
 
             const login = async () => {
-                const response = await axios.post("http://t-m-o.herokuapp.com/users", obj);
+                const response = await axios.post("https://t-m-o.herokuapp.com/users", obj);
                 if (response.status === 200) {
                     next(response.data);
                 }

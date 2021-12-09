@@ -22,7 +22,7 @@ class Login extends React.Component {
             const obj = { "email": document.getElementById('email').value, "password": document.getElementById('password').value }
 
             const login = async () => {
-                const response = await axios.post("http://t-m-o.herokuapp.com/login", obj);
+                const response = await axios.post("https://t-m-o.herokuapp.com/login", obj);
                 if (response.status === 200) {
                     next(response.data);
                 }
