@@ -1,52 +1,55 @@
 import { React, useEffect, useState } from 'react'
-import { Form } from 'react-bootstrap'
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { Table } from 'react-bootstrap';
 
 function AddOrder() {
     const [category, setcategory] = useState([]);
+    const [item, setitem] = useState([]);
 
     useEffect(() => {
         get();
     }, []);
-    const clicked = (e) =>{
-        if(e === "Select Category") return;
-        console.log(e);
-        toast("dish name will be here");
-    }
 
     const get = async () => {
         const categories = await axios.get("https://t-m-o.herokuapp.com/category");
-        // const items = await axios.get("https://t-m-o.herokuapp.com/items");
+        const items = await axios.get("https://t-m-o.herokuapp.com/items");
         if (categories.status === 200) {
             setcategory(categories.data);
+        }
+        if (items.status === 200) {
+            setitem(items.data);
         }
     }
     return (
         <>
         <div>
-            <Form style={{width:'170px'}}>
-                <Form.Group controlId="category" onChange={()=>clicked(document.getElementById('category').value)}>
-                    <Form.Select defaultValue="Choose...">
-                        <option >Select Category</option>
-                        {!category.data ?<option value={null}>loading...</option>
-                        : category.data.map((item, index) => {
-                            return (<option key={index} value={item._id}>{item.name}</option>)
-                        })}
-                    </Form.Select>
-                </Form.Group>
-            </Form>
+            {!category.data ?<h1>loading...</h1>: category.data.map((cat,cIndex)=>{
+                return(<>
+                    <br/>
+                    
+                    <Table responsive="sm">
+                    
+                        <thead></thead>
+                        <h3 key={cIndex}>{cat.name}</h3>
+                        
+                    <hr/>
+                    <tbody>
+                    <div>
+                    {item.data && item.data.map((product,pIndex)=>{
+                        return(cat._id === product.category_id &&<>
+                            <p>{product.name}</p>
+                            </>
+                        )
+                    })}
+                    </div>
+                    </tbody>
+                    </Table>
+                    </>
+                )
+            })}
         </div>
         </>
     )
 }
-
-// function Items(){
-//     return(
-//         <div>
-//             <h1>hello there</h1>
-//         </div>
-//     )
-// }
 
 export default AddOrder

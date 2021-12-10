@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class App extends React.Component {
   state = {
-    isLog: false
+    isLog: true
   }
 
   handleLogin = (isLog) => this.setState({ isLog });
