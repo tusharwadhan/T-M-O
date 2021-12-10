@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import axios from 'axios';
-// import Button from '@restart/ui/esm/Button';
+import { toast } from 'react-toastify';
 
 function AddOrder() {
     const [category, setcategory] = useState([]);
@@ -12,7 +12,7 @@ function AddOrder() {
     const clicked = (e) =>{
         if(e === "Select Category") return;
         console.log(e);
-        get();
+        toast("dish name will be here");
     }
 
     const get = async () => {
@@ -23,6 +23,7 @@ function AddOrder() {
         }
     }
     return (
+        <>
         <div>
             <Form style={{width:'170px'}}>
                 <Form.Group controlId="category" onChange={()=>clicked(document.getElementById('category').value)}>
@@ -36,7 +37,16 @@ function AddOrder() {
                 </Form.Group>
             </Form>
         </div>
+        </>
     )
 }
+
+// function Items(){
+//     return(
+//         <div>
+//             <h1>hello there</h1>
+//         </div>
+//     )
+// }
 
 export default AddOrder

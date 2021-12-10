@@ -3,6 +3,7 @@ import { Button, Container, Alert } from "react-bootstrap";
 import './login.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 class Login extends React.Component {
     state = {
@@ -37,8 +38,7 @@ class Login extends React.Component {
                 }
                 else {
                     this.handleClick(false)
-                    document.getElementById('alert').innerHTML = data.message;
-                    document.getElementById('alert').hidden = false;
+                    toast(data.message);
                     this.props.isLog(true);
                 }
             }

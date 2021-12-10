@@ -5,17 +5,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { TableData1, TableData2, TableData3, TableData4, TableData5, TableData6 } from "../comps/getOrder"
 import Popup from './Popup';
 import AddOrder from '../comps/AddOrder';
+import { Link } from 'react-router-dom';
 
 function Home() {
-
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
 
+    const refresh = ()=>{
+        console.log("clicked");
+        document.getElementById('first').click();
+        setTimeout(()=>{
+            document.getElementById('second').click();
+        },0)    
+             
+    }
+
     return (
         <>
+        <Link to='/about' id='first' hidden={true}>first</Link>
+        <Link to='/home' id='second' hidden={true}>second</Link>
             <br />
             <div className='container'>
                 <Card>
@@ -112,7 +123,7 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
+                        <Button variant="outline-success" className='btn-right green' onClick={()=>refresh()}>Pay Bill</Button>
                     </Card.Footer>
                 </Card>
             </div>
