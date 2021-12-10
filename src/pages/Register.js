@@ -3,6 +3,7 @@ import './register.css'
 import { Form, Row, Col, Button, Container ,Alert} from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 class Register extends React.Component {
 
@@ -47,8 +48,7 @@ class Register extends React.Component {
                 }
                 else {
                     this.handleClick(false)
-                    document.getElementById('alert').innerHTML = data.message;
-                    document.getElementById('alert').hidden = false;
+                    toast(data.message);
                     this.props.isLog(true);
                 }
             }
