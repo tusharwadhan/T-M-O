@@ -2,6 +2,8 @@ import { React, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Table,Image } from 'react-bootstrap';
 import logo from '../tmoLogo.png'
+import vegLogo from '../vegLogo.png'
+import nonVegLogo from '../nonVegLogo.png'
 
 function AddOrder() {
     const [category, setcategory] = useState([]);
@@ -40,11 +42,20 @@ function AddOrder() {
                                     <div>
                                         {item.data && item.data.map((product, pIndex) => {
                                             return (cat._id === product.category_id && <>
-                                                
-                                                    <Image src={logo} roundedCircle />
-                                                
-                                                <p>{product.name}</p>
-                                                <p>{product.name}</p>
+                                                <td>
+                                                    <Image src={logo} style={{height:'40px'}} />
+                                                </td>
+                                                <td></td>
+                                                <td>
+                                                <p style={{fontSize:'15px'}}>{product.name}</p>
+                                                </td>
+                                                <td>
+                                                {product.isVeg ?<Image src={vegLogo} style={{height:'15px'}}/>: <Image src={nonVegLogo} style={{height:'15px'}}/>}
+                                                </td>
+
+                                                <td style={{float:'right' , marginTop:'-50px'}}><p>{product.quantity_price[0].price}</p></td>
+
+                                                <hr/>
                                             </>
                                             )
                                         })}
