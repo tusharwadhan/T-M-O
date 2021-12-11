@@ -7,7 +7,9 @@ const TableData1 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getOrder();
+        setInterval(() => {
+            getOrder();
+        },5000); 
     }, []);
 
     const getOrder = async () => {
@@ -64,7 +66,9 @@ const TableData2 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getOrder();
+        setInterval(() => {
+            getOrder();
+        },3000);
     }, []);
 
     const getOrder = async () => {
@@ -121,7 +125,9 @@ const TableData3 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getOrder();
+        setInterval(() => {
+            getOrder();
+        },3000);
     }, []);
 
     const getOrder = async () => {
@@ -177,7 +183,9 @@ const TableData4 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getOrder();
+        setInterval(() => {
+            getOrder();
+        },3000);
     }, []);
 
     const getOrder = async () => {
@@ -233,7 +241,9 @@ const TableData5 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getOrder();
+        setInterval(() => {
+            getOrder();
+        },3000);
     }, []);
 
     const getOrder = async () => {
@@ -289,7 +299,9 @@ const TableData6 = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getOrder();
+        setInterval(() => {
+            getOrder();
+        },3000);
     }, []);
 
     const getOrder = async () => {

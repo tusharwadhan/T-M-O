@@ -5,10 +5,63 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { TableData1, TableData2, TableData3, TableData4, TableData5, TableData6 } from "../comps/getOrder"
 import { Link } from 'react-router-dom';
 import Popup from './Popup';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Home() {
     const [show, setShow] = useState(false);
+    const [load1, setLoad1] = useState(false);
+    const [load2, setLoad2] = useState(false);
+    const [load3, setLoad3] = useState(false);
+    const [load4, setLoad4] = useState(false);
+    const [load5, setLoad5] = useState(false);
+    const [load6, setLoad6] = useState(false);
     const [table, setTable] = useState();
+
+    const finish = async(table)=>{
+    
+        const obj = {"table_no":table}
+        const response = await axios.post("https://t-m-o.herokuapp.com/orderfinish", obj);
+        if(response.status === 200){
+            const data = response.data;
+            if(data.status === true){
+                switch (table) {
+                    case 1:setLoad1(false); break;
+                    case 2:setLoad2(false); break;
+                    case 3:setLoad3(false); break;
+                    case 4:setLoad4(false); break;
+                    case 5:setLoad5(false); break;
+                    case 6:setLoad6(false); break;
+                    default:
+                }
+                toast(data.message);
+            }
+            else{
+                switch (table) {
+                    case 1:setLoad1(false); break;
+                    case 2:setLoad2(false); break;
+                    case 3:setLoad3(false); break;
+                    case 4:setLoad4(false); break;
+                    case 5:setLoad5(false); break;
+                    case 6:setLoad6(false); break;
+                    default:
+                }
+                toast(data.message);
+            }
+        }
+        else{
+            switch (table) {
+                case 1:setLoad1(false); break;
+                case 2:setLoad2(false); break;
+                case 3:setLoad3(false); break;
+                case 4:setLoad4(false); break;
+                case 5:setLoad5(false); break;
+                case 6:setLoad6(false); break;
+                default:
+            }
+            toast('server error!');
+        }
+    }
 
     return (
         <>
@@ -28,7 +81,8 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
+                        {!load1 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad1(true); finish(1)}}>Pay Bill</Button>
+                        :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
                 </Card>
 
@@ -44,7 +98,8 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
+                        {!load2 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad2(true); finish(2)}}>Pay Bill</Button>
+                        :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
                 </Card>
 
@@ -60,7 +115,8 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
+                        {!load3 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad3(true); finish(3)}}>Pay Bill</Button>
+                        :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
                 </Card>
 
@@ -78,7 +134,8 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
+                        {!load4 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad4(true); finish(4)}}>Pay Bill</Button>
+                        :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
                 </Card>
 
@@ -94,7 +151,8 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green'>Pay Bill</Button>
+                        {!load5 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad5(true); finish(5)}}>Pay Bill</Button>
+                        :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
                 </Card>
 
@@ -110,7 +168,8 @@ function Home() {
                     </Card.Body>
                     <Card.Footer>
                         <Button variant="outline-success" className='btn-left green'>Receipt</Button>
-                        <Button variant="outline-success" className='btn-right green' >Pay Bill</Button>
+                        {!load6 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad6(true); finish(6)}}>Pay Bill</Button>
+                        :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
                 </Card>
             </div>
