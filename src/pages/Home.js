@@ -3,7 +3,6 @@ import { Card, Button } from 'react-bootstrap'
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { TableData1, TableData2, TableData3, TableData4, TableData5, TableData6 } from "../comps/getOrder"
-import { Link } from 'react-router-dom';
 import Popup from './Popup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -65,8 +64,6 @@ function Home() {
 
     return (
         <>
-            <Link to='/about' id='first' hidden={true}>first</Link>
-            <Link to='/home' id='second' hidden={true}>second</Link>
             <br />
             <div className='container'>
                 <Card>
