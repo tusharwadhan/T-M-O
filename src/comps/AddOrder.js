@@ -10,18 +10,23 @@ function AddOrder(props) {
     const [category, setcategory] = useState([]);
     const [item, setitem] = useState([]);
 
-    const insert = async (quantityId , isVeg , itemId) =>{
+    const insert = async (quantityId , isVeg , itemId ,buttonId) =>{
+        document.getElementById(buttonId).disabled = true
+        document.getElementById(buttonId).innerText = "loading..."
 
         if(quantityId === undefined){
             toast("please select price!");
+            document.getElementById(buttonId).disabled = false
+            document.getElementById(buttonId).innerText = "add"
             return;
         }
         if(isVeg === undefined || props.table === undefined || itemId === undefined){
             toast("something went wrong please try again later!");
+            document.getElementById(buttonId).disabled = false
+            document.getElementById(buttonId).innerText = "add"
             return;
         }
-
-        toast("adding order");
+        
         const obj = [{
             "item_id":itemId,
             "isVeg":isVeg,
@@ -33,13 +38,19 @@ function AddOrder(props) {
         if(response.status === 200){
             const data = response.data;
             if(data.status === true){
+                document.getElementById(buttonId).disabled = false
+                document.getElementById(buttonId).innerText = "add"
                 toast(data.message);
             }
             else{
+                document.getElementById(buttonId).disabled = false
+                document.getElementById(buttonId).innerText = "add"
                 toast(data.message);
             }
         }
         else{
+            document.getElementById(buttonId).disabled = false
+            document.getElementById(buttonId).innerText = "add"
             toast("server error.. try again later!");
         }
     }
@@ -131,7 +142,7 @@ function AddOrder(props) {
                                                 </td>
 
                                                     <td style={{float:'right'}}>
-                                                <Button variant="outline-primary" style={{float:'right' ,marginTop:'-60px' , marginLeft:'280px'}} onClick={()=>insert(quantity , product.isVeg , product._id)}>add</Button>
+                                                <Button variant="outline-primary" id={pIndex} style={{float:'right' ,marginTop:'-60px' , marginLeft:'280px'}} onClick={()=>insert(quantity , product.isVeg , product._id ,pIndex)}>add</Button>
                                                 </td>
                                                 <hr />
                                             </>
