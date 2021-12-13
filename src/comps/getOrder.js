@@ -1,6 +1,33 @@
 import { React, useState, useEffect } from 'react'
-import { Table, Spinner, Button } from 'react-bootstrap'
+import { Table, Spinner, Button, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+
+const deleteOrder = async (id) => {
+
+    if (window.confirm("are you sure you want to delete this order ?")) {
+        const obj = { "id": id }
+        const response = await axios.delete("https://t-m-o.herokuapp.com/order", {data:obj});
+        if (response.status === 200) {
+            const data = response.data;
+            if (data.status === true) {
+                toast(data.message);
+            }
+            else {
+                toast(data.message);
+            }
+        }
+        else {
+            toast("server error!");
+        }
+    }
+}
+
+const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+        Delete this order
+    </Tooltip>
+);
 
 //getting data for table 1
 const TableData1 = () => {
@@ -9,7 +36,7 @@ const TableData1 = () => {
     useEffect(() => {
         setInterval(() => {
             getOrder();
-        },5000); 
+        }, 5000);
     }, []);
 
     const getOrder = async () => {
@@ -41,6 +68,7 @@ const TableData1 = () => {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +78,15 @@ const TableData1 = () => {
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
+                                <td>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="outline-dark" onClick={() => deleteOrder(items._id)} style={{ fontSize: '10px' }}>Del</Button>
+                                    </OverlayTrigger>
+                                </td>
                             </tr>
                         );
 
@@ -68,7 +105,7 @@ const TableData2 = () => {
     useEffect(() => {
         setInterval(() => {
             getOrder();
-        },3000);
+        }, 3000);
     }, []);
 
     const getOrder = async () => {
@@ -100,6 +137,7 @@ const TableData2 = () => {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,6 +147,15 @@ const TableData2 = () => {
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
+                                <td>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="outline-dark" onClick={() => deleteOrder(items._id)} style={{ fontSize: '10px' }}>Del</Button>
+                                    </OverlayTrigger>
+                                </td>
                             </tr>
                         );
 
@@ -127,7 +174,7 @@ const TableData3 = () => {
     useEffect(() => {
         setInterval(() => {
             getOrder();
-        },3000);
+        }, 3000);
     }, []);
 
     const getOrder = async () => {
@@ -159,6 +206,7 @@ const TableData3 = () => {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -168,6 +216,15 @@ const TableData3 = () => {
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
+                                <td>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="outline-dark" onClick={() => deleteOrder(items._id)} style={{ fontSize: '10px' }}>Del</Button>
+                                    </OverlayTrigger>
+                                </td>
                             </tr>
                         );
 
@@ -185,7 +242,7 @@ const TableData4 = () => {
     useEffect(() => {
         setInterval(() => {
             getOrder();
-        },3000);
+        }, 3000);
     }, []);
 
     const getOrder = async () => {
@@ -217,6 +274,7 @@ const TableData4 = () => {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -226,6 +284,15 @@ const TableData4 = () => {
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
+                                <td>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="outline-dark" onClick={() => deleteOrder(items._id)} style={{ fontSize: '10px' }}>Del</Button>
+                                    </OverlayTrigger>
+                                </td>
                             </tr>
                         );
 
@@ -243,7 +310,7 @@ const TableData5 = () => {
     useEffect(() => {
         setInterval(() => {
             getOrder();
-        },3000);
+        }, 3000);
     }, []);
 
     const getOrder = async () => {
@@ -275,6 +342,7 @@ const TableData5 = () => {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -284,6 +352,15 @@ const TableData5 = () => {
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
+                                <td>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="outline-dark" onClick={() => deleteOrder(items._id)} style={{ fontSize: '10px' }}>Del</Button>
+                                    </OverlayTrigger>
+                                </td>
                             </tr>
                         );
 
@@ -301,7 +378,7 @@ const TableData6 = () => {
     useEffect(() => {
         setInterval(() => {
             getOrder();
-        },3000);
+        }, 3000);
     }, []);
 
     const getOrder = async () => {
@@ -334,6 +411,7 @@ const TableData6 = () => {
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -343,6 +421,15 @@ const TableData6 = () => {
                                 <td>{items.name}</td>
                                 <td>{items.quantity_price.type}</td>
                                 <td>{items.quantity_price.price}</td>
+                                <td>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Button variant="outline-dark" onClick={() => deleteOrder(items._id)} style={{ fontSize: '10px' }}>Del</Button>
+                                    </OverlayTrigger>
+                                </td>
                             </tr>
                         );
 
