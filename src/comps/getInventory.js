@@ -1,30 +1,34 @@
 import { React, useEffect } from 'react';
 import { useState } from 'react';
-import { Table, Spinner , Button } from 'react-bootstrap'
+import { Spinner, Button, Container, ListGroup, Image } from 'react-bootstrap'
 import axios from 'axios'
+import logo from '../tmoLogo.png'
+import vegLogo from '../vegLogo.png'
+import nonVegLogo from '../nonVegLogo.png'
 
 function GetInventory() {
-    const [data, setData] = useState([]);
+    const [items, setItem] = useState([]);
+    const [categories, setCategory] = useState([]);
 
     useEffect(() => {
         getCategory();
     }, []);
 
     const getCategory = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/items");
-        if (response.status === 200) {
-            setData(response.data);
+        const item = await axios.get("https://t-m-o.herokuapp.com/items");
+        const category = await axios.get("https://t-m-o.herokuapp.com/category");
+        if (category.status === 200) {
+            setCategory(category.data);
+        }
+        if (item.status === 200) {
+            setItem(item.data);
         }
     }
 
-    if (data.status === false) {
-        return (data.message);
+    if (categories.status === false) {
+        return (categories.message);
     }
-    const isveg = (val) => {
-        if (val === true) return ("Veg");
-        else return ("Non_Veg");
-    }
-    if (data.data === undefined) {
+    if (categories.data === undefined) {
         return (
             <Button variant="primary" disabled>
                 <Spinner
@@ -40,46 +44,36 @@ function GetInventory() {
     }
     return (
         <>
-            {data.data && data.data.map((item, index) => {
-                const type = (val, i) => {
-                    if (val === undefined) return ("--");
-                    return item.quantity_price[i].type;
-                }
-                const price = (val, i) => {
-                    if (val === undefined) return ("--");
-                    return item.quantity_price[i].price;
-                }
-
-                // return(<h1>hello</h1>
-                //     data.data.map((items,indexs)=>{
-                //         return()
-                //     })
-                // )
-
-                return (<Table responsive="sm" key='index'>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Veg/NonVeg</th>
-                            <th>{type(item.quantity_price[0], 0)}</th>
-                            <th>{type(item.quantity_price[1], 1)}</th>
-                            <th>{type(item.quantity_price[2], 2)}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{index + 1}</td>
-                            <td>{item.name}</td>
-                            <td>{isveg(item.isVeg)}</td>
-                            <td>{price(item.quantity_price[0], 0)}</td>
-                            <td>{price(item.quantity_price[1], 1)}</td>
-                            <td>{price(item.quantity_price[2], 2)}</td>
-                        </tr>
-                    </tbody>
-                </Table>)
-
-            })}
+            <Container style={{ width: '80%' }}>
+                <ListGroup style={{ width: '100%' }}>
+                    {categories.data && categories.data.map((cat, cIndex) => {
+                        return (
+                            <>
+                                <ListGroup.Item key={cIndex}>
+                                    <h3 style={{ float: 'left' }}>{cat.name}</h3>
+                                    <br />
+                                    <hr style={{ height: '3px', marginTop: '20px' }} />
+                                    {items.data && items.data.map((product, pIndex) => {
+                                        return (
+                                            cat._id === product.category_id &&
+                                            <>
+                                                <br />
+                                                <Image src={logo} style={{ height: '50px', float: 'left' }} />
+                                                <p style={{ textAlign: 'left',marginLeft:'60px' , marginTop:'10px' }}>
+                                                    {`${product.name} `}
+                                                    {product.isVeg ?<Image src={vegLogo} style={{ height: '15px' }} />:<Image src={nonVegLogo} style={{ height: '15px' }} />}
+                                                </p>
+                                                {!product.quantity_price[0] === undefined && <p>{product.quantity_price[0].price}</p>}
+                                            </>
+                                        )
+                                    })}
+                                </ListGroup.Item>
+                                <br />
+                            </>
+                        )
+                    })}
+                </ListGroup>
+            </Container>
         </>
     )
 }
