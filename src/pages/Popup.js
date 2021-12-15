@@ -1,6 +1,7 @@
 import React from 'react'
-import { Modal , Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import AddOrder from '../comps/AddOrder'
+import AddProduct from '../comps/AddProduct'
 
 function Popup(props) {
     return (
@@ -11,13 +12,19 @@ function Popup(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Add Order<p style={{fontSize:'13px'}} className='text-muted'>{`table no. ${props.table}`}</p>
+                    {props.table ?
+                        <>
+                            <h2>Add Order</h2>
+                            <p style={{ fontSize: '13px' }} className='text-muted'>{`table no. ${props.table}`}</p>
+                        </>:
+                        <h2>Add Product</h2>
+                    }
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{height:'450px' , overflow:'auto'}}>
+            <Modal.Body style={{ height: '450px', overflow: 'auto' }}>
 
-                <AddOrder table={props.table}/>
-
+                {props.table ?<AddOrder table={props.table} />:<AddProduct/>}
+                
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Done</Button>

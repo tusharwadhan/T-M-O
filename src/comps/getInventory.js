@@ -11,7 +11,9 @@ function GetInventory() {
     const [categories, setCategory] = useState([]);
 
     useEffect(() => {
-        getCategory();
+        setInterval(() => {
+            getCategory();
+        }, 5000);
     }, []);
 
     const getCategory = async () => {
@@ -50,20 +52,23 @@ function GetInventory() {
                         return (
                             <>
                                 <ListGroup.Item key={cIndex}>
-                                    <h3 style={{ float: 'left' }}>{cat.name}</h3>
+                                    <h2 style={{ float: 'left' }}>{cat.name}</h2>
                                     <br />
-                                    <hr style={{ height: '3px', marginTop: '20px' }} />
+                                    <hr style={{ height: '3px', marginTop: '25px' }} />
                                     {items.data && items.data.map((product, pIndex) => {
                                         return (
                                             cat._id === product.category_id &&
                                             <>
                                                 <br />
-                                                <Image src={logo} style={{ height: '50px', float: 'left' }} />
-                                                <p style={{ textAlign: 'left',marginLeft:'60px' , marginTop:'10px' }}>
-                                                    {`${product.name} `}
-                                                    {product.isVeg ?<Image src={vegLogo} style={{ height: '15px' }} />:<Image src={nonVegLogo} style={{ height: '15px' }} />}
+                                                <Image src={logo} style={{ height: '70px', float: 'left' }} />
+                                                <p style={{ textAlign: 'left',marginLeft:'80px' , marginTop:'13px' ,fontSize:'20px' }}>
+                                                    {`TMO ${product.name} `}
+                                                    {product.isVeg ?<Image src={vegLogo} style={{ height: '20px' }} />:<Image src={nonVegLogo} style={{ height: '15px' }} />}
                                                 </p>
-                                                {!product.quantity_price[0] === undefined && <p>{product.quantity_price[0].price}</p>}
+                                                <p className="text-muted" style={{ textAlign: 'left',marginLeft:'80px' , marginTop:'-20px' }}>Coocked with Love</p>
+                                                <p style={{ textAlign:'right' ,fontSize:'20px' , marginTop:'-62px'}}>{`Rs. ${product.quantity_price[0].price}.00`}</p>
+                                                <p className="text-muted" style={{ textAlign:'right', marginTop:'-20px'}}>10% Off</p>
+                                                <hr style={{ height: '2px' }}/>
                                             </>
                                         )
                                     })}
