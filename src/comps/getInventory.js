@@ -63,7 +63,7 @@ function GetInventory() {
                                                 <Image src={logo} style={{ height: '70px', float: 'left' }} />
                                                 <p style={{ textAlign: 'left',marginLeft:'80px' , marginTop:'13px' ,fontSize:'20px' }}>
                                                     {`TMO ${product.name} `}
-                                                    {product.isVeg ?<Image src={vegLogo} style={{ height: '20px' }} />:<Image src={nonVegLogo} style={{ height: '15px' }} />}
+                                                    {product.isVeg ?<Image src={vegLogo} style={{ height: '20px' }} />:<Image src={nonVegLogo} style={{ height: '20px' }} />}
                                                 </p>
                                                 <p className="text-muted" style={{ textAlign: 'left',marginLeft:'80px' , marginTop:'-20px' }}>Coocked with Love</p>
                                                 <p style={{ textAlign:'right' ,fontSize:'20px' , marginTop:'-62px'}}>{`Rs. ${product.quantity_price[0].price}.00`}</p>
