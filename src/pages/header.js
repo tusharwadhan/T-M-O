@@ -7,7 +7,7 @@ import { NavDropdown } from "react-bootstrap";
 import './header.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div>
             <Navbar bg="light" expand="lg">
@@ -23,7 +23,7 @@ const Header = () => {
                                 <NavDropdown.Item><Link to="/about" className='link'>About</Link></NavDropdown.Item>
                                 <NavDropdown.Item><Link to="/help" className='link'>Help</Link></NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item><Link to="/" className='link'>Logout</Link></NavDropdown.Item>
+                                <NavDropdown.Item onClick={()=>props.isLog(false)} >Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

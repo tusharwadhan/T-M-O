@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import Header from "./pages/header";
 import Home from "./pages/Home";
@@ -10,8 +10,8 @@ import Help from "./pages/Help";
 import Login from "./pages/Login";
 import Register from './pages/Register';
 import React from 'react';
-import NotLogin from './pages/NotLogin';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 
 class App extends React.Component {
@@ -21,18 +21,20 @@ class App extends React.Component {
 
   handleLogin = (isLog) => this.setState({ isLog });
 
-  render() {
-
-    const Nav = () => {
-      setTimeout(() => {
-        document.getElementById('link').click();
-      }, 500)
+  get = async() =>{
+    const response = await axios.get("https://t-m-o.herokuapp.com/users");
+    if(response.status === 200){
+      this.handleLogin(true);
     }
+  }
+
+  render() {
     const { isLog } = this.state;
+    this.get();
     return (
       <BrowserRouter>
         <div className="App">
-          <Header />
+          <Header isLog={this.handleLogin}/>
           <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -44,14 +46,13 @@ class App extends React.Component {
             draggable
             pauseOnHover
           />
-          <Link to="/home" id='link' hidden={true}>link</Link>
 
           <Routes>
-            <Route exact path="/" element={!isLog ? <Login isLog={this.handleLogin} /> : Nav()} />
-            <Route exact path="/register" element={!isLog ? <Register isLog={this.handleLogin} /> : Nav()} />
-            <Route exact path="/home" element={isLog ? <Home /> : <NotLogin />} />
-            <Route exact path="/transaction" element={isLog ? <Transaction /> : <NotLogin />} />
-            <Route exact path="/inventory" element={isLog ? <Inventory /> : <NotLogin />} />
+            <Route exact path="/" element={!isLog ? <Login isLog={this.handleLogin} /> :<Navigate to='/home'/>} />
+            <Route exact path="/register" element={!isLog ? <Register isLog={this.handleLogin} /> :<Navigate to='/home'/>} />
+            <Route exact path="/home" element={isLog ? <Home /> :<Login isLog={this.handleLogin}/>} />
+            <Route exact path="/transaction" element={isLog ? <Transaction /> :<Login isLog={this.handleLogin} />} />
+            <Route exact path="/inventory" element={isLog ? <Inventory /> :<Login isLog={this.handleLogin} />} />
             <Route exact path="/help" element={<Help />} />
             <Route exact path="/about" element={<About />} />
           </Routes>
