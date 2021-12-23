@@ -24,18 +24,24 @@ const App = () => {
   },)
 
   const get = async () => {
-    const response = await axios.get("https://t-m-o.herokuapp.com/isLogin");
+    const response = await axios.get("https://t-m-o.herokuapp.com/isLogin",{
+      headers:{
+          'Content-Type': 'application/json'
+      },
+      withCredentials:true 
+    });
     if (response.status === 200) {
       const res = response.data;
       if (res.status === true) {
+        toast(res.message);
         handleLogin(true);
       }
+      else console.log(false);
     }
     else {
       toast("can't find session please login");
     }
   }
-
 
   return (
     <BrowserRouter>
