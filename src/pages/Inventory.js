@@ -11,7 +11,7 @@ function Inventory() {
             <div>
                 <>
                     <ButtonGroup aria-label="Basic example" style={{ margin: '10px' }}>
-                        <Button variant="outline-dark" onClick={()=>toast("this feature is comming soon") }>Edit Inventory</Button>
+                        <Button variant="outline-dark" onClick={()=>toast("This feature is coming soon") }>Edit Inventory</Button>
                         <Button variant="outline-dark" onClick={() => setShow(true)}>Add Product</Button>
                     </ButtonGroup>
                     <br />

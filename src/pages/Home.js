@@ -17,6 +17,10 @@ function Home() {
     const [load6, setLoad6] = useState(false);
     const [table, setTable] = useState();
 
+    const receipt = ()=>{
+        toast('This feature is coming soon');
+    }
+
     const finish = async(table)=>{
     
         const obj = {"table_no":table}
@@ -77,7 +81,7 @@ function Home() {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-left green' onClick={()=>receipt()} >Receipt</Button>
                         {!load1 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad1(true); finish(1)}}>Pay Bill</Button>
                         :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
@@ -94,7 +98,7 @@ function Home() {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-left green' onClick={()=>receipt()}>Receipt</Button>
                         {!load2 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad2(true); finish(2)}}>Pay Bill</Button>
                         :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
@@ -111,7 +115,7 @@ function Home() {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-left green' onClick={()=>receipt()}>Receipt</Button>
                         {!load3 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad3(true); finish(3)}}>Pay Bill</Button>
                         :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
@@ -130,7 +134,7 @@ function Home() {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-left green' onClick={()=>receipt()}>Receipt</Button>
                         {!load4 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad4(true); finish(4)}}>Pay Bill</Button>
                         :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
@@ -147,7 +151,7 @@ function Home() {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-left green' onClick={()=>receipt()}>Receipt</Button>
                         {!load5 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad5(true); finish(5)}}>Pay Bill</Button>
                         :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>
@@ -164,7 +168,7 @@ function Home() {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="outline-success" className='btn-left green'>Receipt</Button>
+                        <Button variant="outline-success" className='btn-left green' onClick={()=>receipt()}>Receipt</Button>
                         {!load6 ?<Button variant="outline-success" className='btn-right green' onClick={()=>{setLoad6(true); finish(6)}}>Pay Bill</Button>
                         :<Button variant="outline-success" className='btn-right green' disabled>loading...</Button>}
                     </Card.Footer>

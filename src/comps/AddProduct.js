@@ -220,7 +220,10 @@ function AddProduct() {
                             <p>Category</p>
                             <select id="cat" onChange={() =>setCat(document.getElementById('cat').value)}>
                             <option value={undefined}>Select Category</option>
-                                {categories.data && categories.data.map((cat,index)=>{
+                                {!categories.data ?
+                                <option key={'1'} value={undefined} disabled>loading...</option>
+                                :
+                                categories.data.map((cat,index)=>{
                                     return(
                                         <option key={index} value={cat._id}>{cat.name}</option>
                                     )
