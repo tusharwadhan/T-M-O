@@ -7,13 +7,16 @@ import nonVegLogo from '../nonVegLogo.png'
 import { toast } from 'react-toastify';
 
 function AddOrder(props) {
+    // category data
     const [category, setcategory] = useState([]);
+    //items data
     const [item, setitem] = useState([]);
 
     const insert = async (quantityId , isVeg , itemId ,buttonId) =>{
         document.getElementById(buttonId).disabled = true
         document.getElementById(buttonId).innerText = "loading..."
 
+        //checking requirements
         if(quantityId === undefined){
             toast("please select price!");
             document.getElementById(buttonId).disabled = false
@@ -27,27 +30,33 @@ function AddOrder(props) {
             return;
         }
         
+        //making objects
         const obj = [{
             "item_id":itemId,
             "isVeg":isVeg,
             "table_no":props.table,
             "quantity_id":quantityId
         }]
-
+        
+        //calling api
         const response = await axios.post("https://t-m-o.herokuapp.com/order", obj);
+        //if api status: 200
         if(response.status === 200){
             const data = response.data;
+            //if response status: true
             if(data.status === true){
                 document.getElementById(buttonId).disabled = false
                 document.getElementById(buttonId).innerText = "add"
                 toast(data.message);
             }
+            //if response status is false
             else{
                 document.getElementById(buttonId).disabled = false
                 document.getElementById(buttonId).innerText = "add"
                 toast(data.message);
             }
         }
+        //if api status is not 200
         else{
             document.getElementById(buttonId).disabled = false
             document.getElementById(buttonId).innerText = "add"
