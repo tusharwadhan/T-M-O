@@ -9,37 +9,39 @@ import Transaction from "./pages/Transaction";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
 import Register from './pages/Register';
-import React, { useEffect , useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 
 const App = () => {
-  const [isLog, setLog] = useState(false);
 
+  const [isLog, setLog] = useState(false);
   const handleLogin = (log) => setLog(log);
 
   useEffect(() => {
     get();
-  },)
+  },);
 
   const get = async () => {
-    const response = await axios.get("https://t-m-o.herokuapp.com/isLogin",{
-      headers:{
+    if (!isLog) {
+      const response = await axios.get("https://t-m-o.herokuapp.com/isLogin", {
+        headers: {
           'Content-Type': 'application/json'
-      },
-      withCredentials:true 
-    });
-    if (response.status === 200) {
-      const res = response.data;
-      if (res.status === true) {
-        toast(res.message);
-        handleLogin(true);
+        },
+        withCredentials: true
+      });
+      if (response.status === 200) {
+        const res = response.data;
+        if (res.status === true) {
+          toast(res.message);
+          handleLogin(true);
+        }
+        else console.log(false);
       }
-      else console.log(false);
-    }
-    else {
-      toast("can't find session please login");
+      else {
+        toast("can't find session please login");
+      }
     }
   }
 
