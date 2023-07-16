@@ -4,6 +4,7 @@ import { Form, Row, Col, Button, Container ,Alert} from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import {url} from '../config.js'
 
 class Register extends React.Component {
 
@@ -33,7 +34,7 @@ class Register extends React.Component {
             }
 
             const login = async () => {
-                const response = await axios.post("https://t-m-o.herokuapp.com/users", obj);
+                const response = await axios.post(`${url}/users`, obj);
                 if (response.status === 200) {
                     next(response.data);
                 }

@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { Table, Spinner ,Button} from 'react-bootstrap'
 import axios from 'axios'
+import {url} from '../config.js'
 
 function GetTransactions() {
     const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ function GetTransactions() {
     }, []);
 
     const getTrans = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/transactions");
+        const response = await axios.get(`${url}/transactions`);
         if (response.status === 200) {
             setData(response.data);
         }

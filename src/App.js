@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import {url} from './config.js'
 
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
 
   const get = async () => {
     if (!isLog) {
-      const response = await axios.get("https://t-m-o.herokuapp.com/isLogin", {
+      const response = await axios.get(`${url}/isLogin`, {
         headers: {
           'Content-Type': 'application/json'
         },

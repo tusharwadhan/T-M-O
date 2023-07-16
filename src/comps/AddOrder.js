@@ -5,6 +5,7 @@ import logo from '../tmoLogo.png'
 import vegLogo from '../vegLogo.png'
 import nonVegLogo from '../nonVegLogo.png'
 import { toast } from 'react-toastify';
+import {url} from '../config.js'
 
 function AddOrder(props) {
     // category data
@@ -39,7 +40,7 @@ function AddOrder(props) {
         }]
         
         //calling api
-        const response = await axios.post("https://t-m-o.herokuapp.com/order", obj);
+        const response = await axios.post(`${url}/order`, obj);
         //if api status: 200
         if(response.status === 200){
             const data = response.data;
@@ -69,8 +70,8 @@ function AddOrder(props) {
     }, []);
 
     const get = async () => {
-        const categories = await axios.get("https://t-m-o.herokuapp.com/category");
-        const items = await axios.get("https://t-m-o.herokuapp.com/items");
+        const categories = await axios.get(`${url}/category`);
+        const items = await axios.get(`${url}/items`);
         if (categories.status === 200) {
             setcategory(categories.data);
         }

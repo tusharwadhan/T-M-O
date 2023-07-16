@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Tabs, Tab, Button } from 'react-bootstrap'
 import { toast } from 'react-toastify';
+import {url} from '../config.js'
 
 function AddProduct() {
     const [categories, setCategory] = useState([]);
@@ -134,7 +135,7 @@ function AddProduct() {
 
     const insertProduct = async(obj)=>{
         const arr = [obj];
-        const response = await axios.post("https://t-m-o.herokuapp.com/items", arr);
+        const response = await axios.post(`${url}/items`, arr);
         if(response.status === 200){
             const data = response.data;
             if(data.status === true){
@@ -165,7 +166,7 @@ function AddProduct() {
             return;
         }
         const obj = { "name": name }
-        const response = await axios.post("https://t-m-o.herokuapp.com/category", obj);
+        const response = await axios.post(`${url}/category`, obj);
         if (response.status === 200) {
             const data = response.data;
             if (data.status === true) {
@@ -192,7 +193,7 @@ function AddProduct() {
     }, [])
 
     const getCategory = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/category");
+        const response = await axios.get(`${url}/category`);
         if (response.status === 200) {
             setCategory(response.data);
         }

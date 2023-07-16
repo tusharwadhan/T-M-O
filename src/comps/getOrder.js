@@ -2,12 +2,13 @@ import { React, useState, useEffect } from 'react'
 import { Table, Spinner, Button, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import {url} from '../config.js'
 
 const deleteOrder = async (id) => {
 
     if (window.confirm("are you sure you want to delete this order ?")) {
         const obj = { "id": id }
-        const response = await axios.delete("https://t-m-o.herokuapp.com/order", {data:obj});
+        const response = await axios.delete(`${url}/order`, {data:obj});
         if (response.status === 200) {
             const data = response.data;
             if (data.status === true) {
@@ -40,7 +41,7 @@ const TableData1 = () => {
     }, []);
 
     const getOrder = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/order?table_no=1");
+        const response = await axios.get(`${url}/order?table_no=1`);
         if (response.status === 200) {
             setData(response.data);
         }
@@ -109,7 +110,7 @@ const TableData2 = () => {
     }, []);
 
     const getOrder = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/order?table_no=2");
+        const response = await axios.get(`${url}/order?table_no=2`);
         if (response.status === 200) {
             setData(response.data);
         }
@@ -178,7 +179,7 @@ const TableData3 = () => {
     }, []);
 
     const getOrder = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/order?table_no=3");
+        const response = await axios.get(`${url}/order?table_no=3`);
         if (response.status === 200) {
             setData(response.data);
         }
@@ -246,7 +247,7 @@ const TableData4 = () => {
     }, []);
 
     const getOrder = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/order?table_no=4");
+        const response = await axios.get(`${url}/order?table_no=4`);
         if (response.status === 200) {
             setData(response.data);
         }
@@ -314,7 +315,7 @@ const TableData5 = () => {
     }, []);
 
     const getOrder = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/order?table_no=5");
+        const response = await axios.get(`${url}/order?table_no=5`);
         if (response.status === 200) {
             setData(response.data);
         }
@@ -382,7 +383,7 @@ const TableData6 = () => {
     }, []);
 
     const getOrder = async () => {
-        const response = await axios.get("https://t-m-o.herokuapp.com/order?table_no=6");
+        const response = await axios.get(`${url}/order?table_no=6`);
         if (response.status === 200) {
             setData(response.data);
         }

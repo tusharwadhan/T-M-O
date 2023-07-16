@@ -5,6 +5,7 @@ import axios from 'axios'
 import logo from '../tmoLogo.png'
 import vegLogo from '../vegLogo.png'
 import nonVegLogo from '../nonVegLogo.png'
+import {url} from '../config.js'
 
 function GetInventory() {
     const [items, setItem] = useState([]);
@@ -17,8 +18,8 @@ function GetInventory() {
     }, []);
 
     const getCategory = async () => {
-        const item = await axios.get("https://t-m-o.herokuapp.com/items");
-        const category = await axios.get("https://t-m-o.herokuapp.com/category");
+        const item = await axios.get(`${url}/items`);
+        const category = await axios.get(`${url}/category`);
         if (category.status === 200) {
             setCategory(category.data);
         }

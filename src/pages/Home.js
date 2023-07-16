@@ -6,6 +6,7 @@ import { TableData1, TableData2, TableData3, TableData4, TableData5, TableData6 
 import Popup from './Popup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import {url} from '../config.js'
 
 function Home() {
     const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ function Home() {
     const finish = async(table)=>{
     
         const obj = {"table_no":table}
-        const response = await axios.post("https://t-m-o.herokuapp.com/orderfinish", obj);
+        const response = await axios.post(`${url}/orderfinish`, obj);
         if(response.status === 200){
             const data = response.data;
             if(data.status === true){

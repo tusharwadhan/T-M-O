@@ -4,6 +4,7 @@ import './login.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import {url} from '../config.js'
 
 class Login extends React.Component {
     state = {
@@ -23,7 +24,7 @@ class Login extends React.Component {
             const obj = { "email": document.getElementById('email').value, "password": document.getElementById('password').value }
 
             const login = async () => {
-                const response = await axios.post("https://t-m-o.herokuapp.com/login", obj,{
+                const response = await axios.post(`${url}/login`, obj,{
                     headers:{
                         'Content-Type': 'application/json'
                     },
